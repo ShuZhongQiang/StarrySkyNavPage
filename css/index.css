@@ -1,0 +1,324 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+/* 整个滚动条 */
+::-webkit-scrollbar {
+  /* 对应纵向滚动条的宽度 */
+  width: 10px;
+  /* 对应横向滚动条的宽度 */
+  height: 10px;
+}
+
+/* 滚动条上的滚动滑块 */
+::-webkit-scrollbar-thumb {
+  background-color: #8650c4;
+  border-radius: 32px;
+}
+
+/* 滚动条轨道 */
+::-webkit-scrollbar-track {
+  background-color: #dbaefa;
+  border-radius: 32px;
+}
+
+body{
+  width: 100%;
+  height: 100%;
+}
+.nav-content{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: radial-gradient(circle at 8.28% 73.01%, #560575 0, #3d0b6b 15%, #25056e 25%, #0a1488 80%, #000b6b 100%);
+}
+.nav-head{
+  width: 100%;
+  height: calc(20%);
+}
+.nav-head .search-box {
+  width: calc(32%);
+  height: 50PX;
+  margin: 0 auto;
+  position: absolute;
+  top: 14%;
+  left: calc(50% - 16%);
+  z-index: 99999;
+}
+.nav-head .search-box input{
+  width: calc(100% - 30%);
+  height: 100%;
+  border: none;
+  outline: none;
+  background: #fff;
+  padding: 0 10px;
+  font-size: 14px;
+  color: #666;
+  border-radius: 6px 0 0 6px;
+}
+.nav-head .search-box button{
+  width: calc(30% - 20px);
+  height: 100%;
+  border: none;
+  outline: none;
+  color: #fff;
+  /*渐变背景色*/
+  background: linear-gradient(to right,#6e4ce9,#0a2963);
+  font-size: 14px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 0 6px 6px 0;
+  overflow:hidden
+}
+.nav-head .search-box button span{
+  position: absolute;
+  top: calc(50% - 8px);
+  left: calc(50% - 8px);
+  z-index: 9999;
+}
+.nav-head .search-box button:hover .botton-bk-icon{
+  /*放大*/
+  transform: scale(1.2);
+}
+.nav-head .search-box button:active{
+  /*缩小*/
+  transform: scale(.9);
+}
+.nav-head .search-box button .botton-bk-icon{
+  position: absolute;
+  left: -10px;
+  top: 10px;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: linear-gradient(#049af1, #2219a1);
+}
+/*botton-bk-icon 的伪元素*/
+.nav-head .search-box button .botton-bk-icon::before{
+  content: "";
+  position: absolute;
+  left: 126px;
+  top: -48px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  /*渐变背景色*/
+  background: linear-gradient(#3d8dd8,#9a81f7);
+}
+.canvas-box{
+  width: 100%;
+  height: 99%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.nav-body{
+  width: calc(50%);
+  height: calc(60%);
+  /*半透明背景色*/
+  background: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  left: calc(50% - 25%);
+  top: calc(25%);
+  border-radius: 16px;
+  z-index: 9999;
+}
+.nav-body .icon-left{
+  color:#fff;
+  font-size: 40px;
+}
+.nav-body .left-icon-style{
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: calc(50% - 20px);
+  z-index: 9999;
+  display: none;
+   opacity: .5;
+  /*循环动画效果*/
+  animation: glitterLeft 2s linear infinite;
+}
+.nav-body .right-icon-style{
+  display: inline-block;
+  position: absolute;
+  left: calc(95% + 4px);
+  top: calc(50% - 20px);
+  z-index: 99999;
+  transform: rotate(180deg);
+  opacity: .5;
+  /*循环动画效果*/
+  animation: glitter 2s linear infinite;
+}
+@keyframes glitterLeft{
+  0%{
+    /*向左偏移*/
+    transform: translateX(5px);
+  }
+  50%{
+    /*向右偏移*/
+    transform: translateX(0px);
+  }
+  100%{
+    /*向左偏移*/
+    transform: translateX(5px); 
+  }
+}
+
+@keyframes glitter{
+  0%{
+    /*向左偏移*/
+    transform: translateX(0px) rotate(180deg);
+  }
+  50%{
+    /*向右偏移*/
+    transform: translateX(5px) rotate(180deg);
+  }
+  100%{
+    /*向左偏移*/
+    transform: translateX(0px) rotate(180deg); 
+  }
+}
+
+/*鼠标悬浮时停止动画并改变透明度*/
+.nav-body .right-icon-style:hover{
+  animation-play-state: paused;
+  opacity: 1;
+}
+
+.nav-body .bookmark-menu{
+  width: 90%;
+  height: 90%;
+  display: block;
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  /*超出不展示*/
+  overflow: hidden;
+}
+
+.nav-body .bookmark-menu .bookmark-menu-box{
+  width:auto;
+  height: 100%;
+  display: inline-flex;
+}
+.item1 { 
+  grid-area: header; 
+}
+.item2 {
+  grid-area: menu; 
+}
+.item3 { 
+  grid-area: main; 
+}
+.item4 { 
+  grid-area: right; 
+}
+.item5 { 
+  grid-area: footer; 
+}
+.item6 { 
+  grid-area: footer2; 
+}
+.develop-document{
+  overflow: hidden;
+  text-align: left;
+  padding-top: 30px;
+}
+.develop-document:hover {
+  overflow-y: scroll;
+}
+.develop-document ul li{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  line-height: 30px;
+}
+.develop-document ul li a{
+  color: #fff;
+  text-decoration: none;
+}
+.develop-document ul li img{
+  /*文字对齐*/
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+.develop-document h4 {
+  font-weight:normal;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.nav-body .bookmark-menu .bookmark-menu-box .bookmark-menu-box-block{
+  width:auto;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  position: relative;
+}
+#page1{
+  grid-template-rows: 1fr 1fr 8fr ;
+  grid-gap: 30px;
+  grid-template-areas:
+  'header header header header header header'
+  'menu menu menu main main main '
+  'menu menu menu right right right';
+}
+#page2{
+  grid-template-rows: 1fr 8fr 1fr;
+  grid-gap: 30px;
+  grid-template-areas:
+  'header header header header header header'
+  'menu menu main main main main'
+  'menu menu footer footer footer footer';
+}
+#page2 .bookmark-menu-button{
+  background-image: none;
+}
+#page3{
+  grid-gap: 10px;
+  grid-template-areas:
+  'header header menu menu main main'
+}
+/*鼠标悬浮宽度变宽动画*/
+#page3 .bookmark-menu-button:nth-child(n):hover{
+  /*执行一次并保留样式*/
+  animation: broaden .5s ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes broaden{
+  0%{
+    width: 300px;
+    /*背景图片缩小*/
+    background-size: 100% 100%;
+  }
+  100%{
+    width: 460px;
+    /*背景图片缩小*/
+    background-size: 100% 100%;
+  }
+}
+
+.bookmark-menu-button{
+  padding: 0 10px;
+  color: #fff;
+  /*文字上下居中*/
+  line-height: 64px;
+  font-size: 14px;
+  /* border: 1px solid rgb(192, 191, 191); */
+  background-image: linear-gradient(200deg, #0a296398, #6f3eec8a, #6e4ce998, #b07ae3ad);
+  border-radius: 8px;
+}
+.clock-title{
+  font-size: 16px;
+}
+#clock{
+  font-size: 24px;
+  color: #fff;
+}
+#weather-icon{
+  width: 64px;
+}

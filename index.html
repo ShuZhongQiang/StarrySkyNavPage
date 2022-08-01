@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <title>pluto导航页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--css-->
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/iconfont.css">
+</head>
+
+<body>
+  <!--导航页头部-->
+  <div class="nav-content">
+    <div class="canvas-box">
+      <canvas id="canvas"></canvas>
+    </div>
+    <div class="nav-head">
+      <!--头部搜索框-->
+      <div class="search-box">
+        <input id="searchInput" type="text" placeholder="搜索" onkeydown="entersearch(event)">
+        <button onclick="toBaidu()"><span>搜索</span>
+          <div class="botton-bk-icon"></div>
+        </button>
+      </div>
+    </div>
+    <!--导航页内容-->
+    <div class="nav-body">
+      <!--左右箭头-->
+      <span class="iconfont icon-left left-icon-style"></span>
+      <span class="iconfont icon-left right-icon-style"></span>
+      <!--书签菜单-->
+      <div class="bookmark-menu">
+        <div class="bookmark-menu-box">
+          <div id="page1" class="bookmark-menu-box-block">
+            <div class="bookmark-menu-button item1"><span>常用开发文档网站⩔</span></div>
+            <div class="bookmark-menu-button item2 develop-document">
+              <ul>
+                <!-- <li>
+                      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACl0lEQVQ4jaWQzWuVVxDGn5k57/vea/QaSTQgqLWFigQqFEpoo3gtgWpcuC92I7h3Y3QVjxU0xF2TRVYuWvofaKBQMIZKaRYuKkIrgugiKiZWzP14P86Z6eKa9oJ11d9ymPnxzEPN27628XA1AsCLn/9yjdGdEjs5/Tl7YwN9HJg6s0221OzNg5dxZGJHAIBtH+8Wav50ZYFFDitpWdxdHyxX1lMZSLOQ6ey9729cB4BPT5857yqeiq2ySMeGyuzI0GuOnGqMv9CRxW+POsdLXHOIrwq0fngCbETQAHe7e2U/ANSfxsfW0jptdxj4Zh9kMIUWASFoU57+ePvJvq+bu8S5zzRFBSEKD98ESdKMK9vu2valFDKmRVmlzZ0kH2wJwiKxDN8tT04vMAAi1SshL9dYSZLRBnhP3VWtrlE7nqW2nq1aXeM9dZeMNsBKErrlWl7mVwEQw4OWTvrnqjrDiWPOWLPxYZAQWRnMymAkRNnhYXDGyoljVZ357dTVF/A9gcJAq1ibrzr5fSYnyUdbozvYMKsMVhncwYYlH26NTE6qTn5/FWvzMBA8lAEAl0GPJucKg16EGUFB2fgQKGNQxsjGhwAFwYwMevHR5FyByyAA6Ak8FB68fMIvxrK8xS4RGanF5NAgJYcGSUZqkV0isShuLp/wi/DoJf9H0EdFdEGrKqfSOPt8WLMvhpVKY62qvBCcBwBcgm3u/yt4m+Lu8ekHFsI811OmlJQSUq5nbEHnf/3K/wEPBv2XYFMCUCctZkI7f84izCIc2vmzTtqdAXrF9Z+88wI8aGXi2rqaeXLC5JgjbHpl4to6fK+4ft4ZAAAMhCUvR7v0O0C4U9dP0PSxP/r7E2xyzAcDnzPQORzz4b17/5e/AcUgLEn7mLC3AAAAAElFTkSuQmCC" />
+                      <a href="">Vue.js中文文档</a>
+                    </li>
+                    <li>
+                      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAC1UlEQVQ4jW2TT4iVVRjGn+c957vfnWlmuNZgKCkEhS7cmSS2aTe00M0wQn9IsRSCIMyFMbgqdKVtok2Bi1EQvAspMHATbVwWLQpiQKjUHJs7c6/3u/f77vfvPC6u84forA6H933Oy/vjB2w7CzcX3Mb9/A/vv3Xh9plfz9489cvpq+/M/V8NAHD8CNc+jhoAPr4zv3+SzUVfR++ZYpZ5QL+fBzNcQ8Clr08sLW8EtY+3a24kvXv99ZnZl3afi0L86WQ8OVX1glR5hYoYpgVdw5G1EiOv9P7ufHn1/PfJ5gSnb8/NT+2ILkZuYl8YGFzdKK00jxChLoCiCMiyvPLeR1PTTSDojxpavDz/7S1789zR2ezfaMk89+XDsgxBAuApEgGEQICE0RdlqUE/K513+//pdJbwwczztucVb3XSHKaPGczDAQQkwiAYRKMAiQLrOkCC6z4ZhIdrnfTgnlfNWvFIzThivtY0lQAgApSe/S6BBEmjyrpmFYIe9boWAtiabcl6+SyjmLQ6QtH3NAcoiOQ2TAAUSEDoDRKm+QjeO/Y6PRqeG8AZETUMf/71BEUeYEZIgKQt3hSMRFYV8GaILQKmpmGjaiQfU0kxxOp6X49XUjhPSALJbSGERIBQpRrNhlerSGXNVpMZ07Cy3g2NhuejlUSDtJD3JkHjJRICJFCiyKwqQgjSzhdepE3s7YYHq+szRajNOauKssKDhz2ajTEqiAgaoxxvo3beLCmy6coVwb557ae1pFueNPKei13U8I4rnaTqDTK5yCRKGk9QEaSfiCIG3Cvq6mT7wztdBwD3f7z/+643dl8nANIOoWGNPCuxq7VDdQXUQXSxd6Msz7O8uDJYzU7c/fzuz1uUFuDQHst05OKRA867xVCFtw+8vBc7p1sYpgVGo/JGkiaXrn1067f/9myZuYBNVQ9/cfjY0a/mlj/77szyJzdOHdvUeVyzKeFT9k18v9LwrSUAAAAASUVORK5CYII=" />
+                      <a href="">Nodejs中文教程文档</a>
+                    </li> -->
+              </ul>
+            </div>
+            <div class="bookmark-menu-button item3">自定义常用网站</div>
+            <div class="bookmark-menu-button item4"></div>
+          </div>
+          <div id="page2" class="bookmark-menu-box-block">
+            <div class="bookmark-menu-button item1">摸鱼日常</div>
+            <div class="bookmark-menu-button item2">
+                <span id="date"></span>
+                <span id="clock"></span>
+                <span id="weather"></span>
+                <br>
+                <span id="weather-icon"></span>
+            </div>
+            <div class="bookmark-menu-button item3">
+
+            </div>
+            <div class="bookmark-menu-button item5">
+              <span id="sentence"></span>
+            </div>
+          </div>
+          <div id="page3" class="bookmark-menu-box-block">
+            <div class="bookmark-menu-button item1 picture"></div>
+            <div class="bookmark-menu-button item2 picture"></div>
+            <div class="bookmark-menu-button item3 picture"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--导航页页脚-->
+    <div class="nav-footer">
+
+    </div>
+  </div>
+    <!--在线jq-->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script r="type" src="https://api.map.baidu.com/api?v=2.0&ak=CDAfOwqAaSGkeW4KHiXaGMqwHtueAMOD"></script>
+  <script src="js/index.js" type="text/javascript"></script>
+  <script src="js/menu.js" type="text/javascript"></script>
+</body>
+
+</html>
