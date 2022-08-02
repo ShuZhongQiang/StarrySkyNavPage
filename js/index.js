@@ -311,7 +311,7 @@ function getOnePicture() {
 function drawOnePicture(){
   let pictureDomArr = document.getElementsByClassName("picture");
   let pictureList = [];
-  if( JSON.parse(localStorage.getItem("pictureList")).length > 0 ){
+  if( localStorage.getItem("pictureList") && JSON.parse(localStorage.getItem("pictureList")).length > 0 ){
     console.log(JSON.parse(localStorage.getItem("pictureList")).length);
     pictureList = JSON.parse(localStorage.getItem("pictureList"));
   }else{
