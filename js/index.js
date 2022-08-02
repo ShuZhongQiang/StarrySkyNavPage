@@ -179,7 +179,9 @@ function update() {
 setInterval(update, 1200 / 60);
 
 function jumpPage(searchValue) {
-  window.location.href = "http://www.baidu.com/s?ie=UTF-8&wd=" + searchValue;
+  if(searchValue){
+      window.location.href = "http://www.baidu.com/s?ie=UTF-8&wd=" + searchValue;
+  }
 }
 function toBaidu() {
   let searchValue = document.getElementById("searchInput").value;
