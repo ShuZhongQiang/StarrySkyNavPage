@@ -322,3 +322,25 @@ body{
 #weather-icon{
   font-size: 64px;
 }
+/*页脚样式*/
+.nav-footer {
+  width: 100%;
+  height: 80px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: inline-block;
+  text-align: center;
+  align-items: center;
+  color: #fff;
+  font-size: small;
+  z-index: 99999;
+}
+.nav-footer a{
+  color: #fff;
+  text-decoration: none;
+}
+.nav-footer a:hover{
+  color: aquamarine;
+  text-decoration: underline;
+}
